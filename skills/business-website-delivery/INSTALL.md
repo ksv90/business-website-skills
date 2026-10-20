@@ -28,8 +28,9 @@ bash -o pipefail -c 'curl -fsSL https://github.com/ksv90/business-website-skills
 в текущем PowerShell и не требует изменения ExecutionPolicy. Организационные правила
 могут ограничивать исполнение такого кода; в этом случае используйте ручную установку.
 
-Адрес `ksv90/business-website-skills` пока планируемый. До публикации первого Release
-команды не работают. Если адрес изменится, замените его в документации и установщиках.
+Исходники доступны в [ksv90/business-website-skills](https://github.com/ksv90/business-website-skills).
+Для команд установки нужен первый GitHub Release с архивами и установщиками;
+до его публикации загрузка релизных assets не работает.
 
 ## Что делает установщик
 
