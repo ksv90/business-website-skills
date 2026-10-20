@@ -39,9 +39,10 @@ try {
         $zip = [IO.Compression.ZipFile]::OpenRead($archive)
         try {
             foreach ($entry in $zip.Entries) {
-                $path = $entry.FullName
-                if (-not $path.StartsWith("$name/", [StringComparison]::Ordinal) -or $path.Contains('\') -or $path -match '(^|/)\.\.(/|$)') {
-                    throw 'Unexpected archive path'
+                # Windows-created ZIPs can use backslashes. Validate both separator forms.
+                $path = $entry.FullName.Replace('\', '/')
+                if (-not $path.StartsWith("$name/", [StringComparison]::Ordinal) -or $path -match '(^|/)\.\.(/|$)') {
+                    throw "Unexpected archive path: $($entry.FullName)"
                 }
                 # Unix ZIP symlinks must not be installed as trusted skill files.
                 if ((($entry.ExternalAttributes -shr 16) -band 0xF000) -eq 0xA000) { throw 'Symlink in archive' }
