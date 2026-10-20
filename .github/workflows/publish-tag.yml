@@ -1,0 +1,45 @@
+name: Repair release assets
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing approved tag on main, for example v1.0.0
+        required: true
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: business-website-skills-release
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      RELEASE_TAG: ${{ inputs.tag }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Validate tag name
+        run: '[[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]'
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate ancestry, tests and version
+        run: |
+          git show-ref --verify "refs/tags/$RELEASE_TAG"
+          git merge-base --is-ancestor "$RELEASE_TAG" origin/main
+          node --test tests/*.test.ts
+          bash scripts/package-skills.sh "${RELEASE_TAG#v}"
+          bash tests/install.test.sh
+      - name: Publish existing tagged content
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" dist/*.zip dist/install.sh dist/install.ps1 dist/*.sha256 --clobber
+          else
+            gh release create "$RELEASE_TAG" dist/*.zip dist/install.sh dist/install.ps1 dist/*.sha256 --verify-tag --generate-notes
+          fi

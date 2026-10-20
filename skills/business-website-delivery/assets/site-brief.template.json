@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "lead_id": null,
+  "business": { "name": null, "country": null, "city": null, "address": null },
+  "source_urls": [],
+  "checked_at": null,
+  "mode": "demo",
+  "scope": "landing",
+  "visitor_goal": null,
+  "facts": [],
+  "unknowns": [],
+  "assets": [],
+  "website_verification": { "status": "unknown", "urls": [], "checks": [] },
+  "proposal": { "template": null, "sections": [], "primary_cta": null },
+  "features": { "included": [], "excluded": [], "deferred": [], "unresolved": [] },
+  "integrations": [],
+  "demo_constraints": { "label": true, "noindex": true, "real_submissions": false },
+  "launch_dependencies": [],
+  "acceptance_checks": [],
+  "handoff": { "preview": null, "source": null, "edit_guide": null, "test_report": null }
+}

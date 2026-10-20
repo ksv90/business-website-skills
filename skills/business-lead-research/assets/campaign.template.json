@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "campaign_id": "",
+  "country": null,
+  "geography": null,
+  "language": "ru",
+  "niches": [],
+  "exclusions": [],
+  "offer": "landing_page",
+  "target_qualified": 20,
+  "time_budget_minutes": 60,
+  "paid_budget": 0,
+  "sources": [],
+  "completed_queries": [],
+  "pending_queries": [],
+  "last_completed_batch": null,
+  "actual_cost": 0,
+  "outreach_authorized": false
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "campaign_id": "synthetic-test-not-real-prospects",
+  "leads": [
+    {
+      "id": "synthetic-001",
+      "group_id": null,
+      "name": "Синтетическая мастерская — НЕ реальный клиент",
+      "niche": "Тестовый ремонт",
+      "city": "Тестовый город",
+      "address": null,
+      "listing_url": "https://example.com/business",
+      "listing_website": "absent",
+      "phone": "+70000000000",
+      "email": null,
+      "messenger_url": null,
+      "website_url": null,
+      "website_status": "not_found",
+      "confidence": "medium",
+      "checked_at": "2026-10-20T12:00:00+07:00",
+      "evidence_ids": ["synthetic-e1"],
+      "qualification": "qualified",
+      "score": 65,
+      "reason": "Искусственные данные для проверки экспортёра, не результат исследования",
+      "opportunity": "Тестовый лендинг",
+      "next_action": "Не связываться; использовать только как fixture",
+      "do_not_contact": false,
+      "outreach_status": "not_contacted"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "synthetic-e1",
+      "lead_id": "synthetic-001",
+      "kind": "search",
+      "source_url": "https://example.com/search",
+      "query": "synthetic test query",
+      "checked_at": "2026-10-20T12:00:00+07:00",
+      "observation": "Синтетическое наблюдение; реальные проверки сайта не проводились",
+      "retention_basis": "Repository-authored synthetic test data"
+    }
+  ]
+}

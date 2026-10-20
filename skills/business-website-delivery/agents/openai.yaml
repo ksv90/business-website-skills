@@ -1,0 +1,6 @@
+interface:
+  display_name: "Business Website Delivery"
+  short_description: "Build business website demos and prepare launch"
+  default_prompt: "Use $business-website-delivery to create a verified, responsive business website demo from this company brief or listing."
+policy:
+  allow_implicit_invocation: true

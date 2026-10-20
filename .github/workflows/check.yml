@@ -1,0 +1,36 @@
+name: Check portable skills
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/check-skills.ts
+      - run: node --test tests/*.test.ts
+      - run: bash scripts/package-skills.sh
+      - run: bash tests/install.test.sh
+      - name: Verify checksums
+        working-directory: dist
+        run: shasum -a 256 -c *.sha256
+  windows-install:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Test native Windows PowerShell installer
+        shell: powershell
+        run: ./tests/install.test.ps1

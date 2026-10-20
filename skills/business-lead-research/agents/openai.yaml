@@ -1,0 +1,6 @@
+interface:
+  display_name: "Business Lead Research"
+  short_description: "Find prospects and verify their website presence"
+  default_prompt: "Use $business-lead-research to find and verify business prospects for website services and deliver an evidence-backed lead table."
+policy:
+  allow_implicit_invocation: true
